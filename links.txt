@@ -1,0 +1,19 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+//Configurando links do launcher							//
+//////////////////////////////////////////////////////////////////////////////////////////
+
+SITE = http://www.sbt.com.br,			LINK DO SEU SITE (NÃO RETIRE A VIRGULA)
+FORUM = http://www.mercadolivre.com.br,		LINK DO SEU FORUM (NÃO RETIRE A VIRGULA)
+LOJA = http://www.perfectzone.com.br,		LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+
+CADASTRO = http://www.perfectzone.com.br,	LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+EVENTO = http://www.perfectzone.com.br,		LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+RANKING = http://www.perfectzone.com.br,	LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+EQUIPE = http://www.perfectzone.com.br,		LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+
+PASTA = http://kingrox.mrvendas.xyz/UpDate,	LINK DO SEUS ARQUIVOS (NÃO RETIRE A VIRGULA e NÃO COLOQUE / NO FINAL)
+VERSAO = update05.zip,				NOME DO ARQUIVO PARA UPDATE (NÃO RETIRE A VIRGULA)
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//Dúvidas entre com contato com o kingrox, Atravez do fórum perfectzone.com.br		//
+//////////////////////////////////////////////////////////////////////////////////////////
