@@ -1,19 +1,26 @@
 //////////////////////////////////////////////////////////////////////////////////////////
-//Configurando links do launcher							//
+//Configurando links do launcher							                                          //
 //////////////////////////////////////////////////////////////////////////////////////////
 
-SITE = http://www.sbt.com.br,			LINK DO SEU SITE (NÃO RETIRE A VIRGULA)
-FORUM = http://www.mercadolivre.com.br,		LINK DO SEU FORUM (NÃO RETIRE A VIRGULA)
-LOJA = http://www.perfectzone.com.br,		LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+NOMEMU = SEUMU,                             NOME DO SERVIDOR (NÃO RETIRE A VIRGULA)
 
-CADASTRO = http://www.perfectzone.com.br,	LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
-EVENTO = http://www.perfectzone.com.br,		LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
-RANKING = http://www.perfectzone.com.br,	LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
-EQUIPE = http://www.perfectzone.com.br,		LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+SITE = www.SEUSITE.com.br,			            LINK DO SEU SITE (NÃO RETIRE A VIRGULA)
+FORUM = www.SEUFORUM.com.br,		            LINK DO SEU FORUM (NÃO RETIRE A VIRGULA)
+SHOP = www.SUALOJA.com.br,		              LINK DO SUA LOJA (NÃO RETIRE A VIRGULA)
+
+CADASTRO = http://www.perfectzone.com.br,	  LINK DE CADASTRO (NÃO RETIRE A VIRGULA)
+EVENTO = http://www.perfectzone.com.br,		  LINK DO EVENTO (NÃO RETIRE A VIRGULA)
+RANKING = http://www.perfectzone.com.br,	  LINK DO RANKING (NÃO RETIRE A VIRGULA)
+EQUIPE = http://www.perfectzone.com.br,		  LINK DA EQUIPE (NÃO RETIRE A VIRGULA)
+
+//ATIVAR UPDATE
+//0 = NÃO 
+//1 = SIM
+UPDATE = 0
 
 PASTA = http://kingrox.mrvendas.xyz/UpDate,	LINK DO SEUS ARQUIVOS (NÃO RETIRE A VIRGULA e NÃO COLOQUE / NO FINAL)
-VERSAO = update05.zip,				NOME DO ARQUIVO PARA UPDATE (NÃO RETIRE A VIRGULA)
+VERSAO = update05.zip,				              NOME DO ARQUIVO PARA UPDATE (NÃO RETIRE A VIRGULA)
 
 //////////////////////////////////////////////////////////////////////////////////////////
-//Dúvidas entre com contato com o kingrox, Atravez do fórum perfectzone.com.br		//
+//Dúvidas entre com contato com o kingrox, Através do fórum perfectzone.com.br		      //
 //////////////////////////////////////////////////////////////////////////////////////////
