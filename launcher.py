@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
 from PIL import Image, ImageTk
 import subprocess
@@ -7,36 +8,55 @@ import os
 import requests
 from zipfile import ZipFile
 
-
-
 pygame.mixer.init()
 
 
 def baixar_arquivo_txt(urll, enderecoo):
-    # faz requisição ao servidor
-    resposta_txt = requests.get(urll)
-    if resposta_txt.status_code == requests.codes.OK:
-        att = open(enderecoo, 'wb')
-        att.write(resposta_txt.content)
-        att.close()
-
-    else:
-        resposta_txt.raise_for_status()
+    try:
+        # Faz a requisição ao servidor
+        resposta_txt = requests.get(urll)
+        if resposta_txt.status_code == requests.codes.OK:
+            with open(enderecoo, 'wb') as att:
+                att.write(resposta_txt.content)
+        else:
+            resposta_txt.raise_for_status()  # Levanta erro para códigos de status diferentes de OK
+    except requests.exceptions.ConnectionError as e:
+        # Exibe o erro de forma mais legível em uma janela Tkinter
+        messagebox.showerror("Erro de atualização", f"Não foi possível conectar ao servidor.\n\nVerifique sua configuraçao de update.")
+    except requests.exceptions.RequestException as e:
+        # Captura outros erros de requisição e exibe em uma janela Tkinter
+        messagebox.showerror("Erro na Requisição", f"Ocorreu um erro ao tentar acessar a URL.\nDetalhes: {e}")
+        
 
 
 with open('links.txt', 'r') as arquivo:
     endereços = arquivo.readlines()
 
 for linha in endereços:
-    if 'PASTA' in linha:
-        meu_endereço_up = linha.split(',')
-        meu_endereço_up[1] = meu_endereço_up[0].replace('PASTA = ', '')
+    if 'UPDATE =' in linha:
+        valor_update = linha.split('=')[1].strip()  # Remove espaços extras
+        print(f"Valor de UPDATE encontrado: {valor_update}")
+        if int(valor_update) == 1:
+            print("UPDATE está habilitado, valor:", valor_update)
+            # Agora, procuramos por 'PASTA' em qualquer linha subsequente
+            for linha_pasta in endereços:
+                if 'PASTA' in linha_pasta:
+                    print("PASTA encontrada na linha")
+                    meu_endereço_up = linha_pasta.split(',')
+                    meu_endereço_up[1] = meu_endereço_up[0].replace('PASTA = ', '')
+
+                    BASE_URLL = meu_endereço_up[1] + f'/update.txt'
+                    OUTPUT_DIRR = ''
+                    nome_arquivo_txt = os.path.join(OUTPUT_DIRR, 'update.txt')
+                    baixar_arquivo_txt(BASE_URLL, nome_arquivo_txt)
+                    print("Função baixar_arquivo_txt chamada")
+                    break  # Sai do loop depois de encontrar a PASTA
+            else:
+                print("PASTA não encontrada em nenhuma linha após UPDATE")
+        else:
+            print("UPDATE não está habilitado (valor diferente de 1)")
 
 
-        BASE_URLL = meu_endereço_up[1] + f'/update.txt'
-        OUTPUT_DIRR = ''
-        nome_arquivo_txt = os.path.join(OUTPUT_DIRR, 'update.txt')
-        baixar_arquivo_txt(BASE_URLL, nome_arquivo_txt)
 
 
 def jogar():
@@ -195,9 +215,15 @@ def config():
 
 
 launcher = Tk()
+for nomes in endereços:
+    if 'NOMEMU =' in nomes:
+        nomemu = nomes.split('=')[1].split(',')[0].strip()  # Divide após '=' e ignora tudo após a vírgula
+    if 'SITE' in nomes:
+        sitenome = nomes.split('=')[1].split(',')[0].strip()  # Divide após '=' e ignora tudo após a vírgula
+
 launcher.geometry('1320x850+150+35')
 launcher.configure(background='#1C2833')
-launcher.title('LauncherMuWF')
+launcher.title(nomemu)
 launcher.iconbitmap('_img/mu.ico')
 
 pygame.mixer.music.load('_som/tema.wav')
@@ -255,8 +281,8 @@ bg_img.place(x=0, y=0)
 # criando label ========================================================================================================
 
 Label(frame_cima, image=img_logo, bg='#1C2833').place(x=0, y=10)
-Label(frame_cima, text='MuOnline PerfectZone', font=('Ivy 17 bold'), fg='#BDC3C7', bg='#1C2833').place(x=170, y=15)
-Label(frame_cima, text='www.perfectzone.com.br', font=('Ivy 9 bold'), fg='#BDC3C7', bg='#1C2833').place(x=170, y=50)
+Label(frame_cima, text=nomemu, font=('Ivy 17 bold'), fg='#BDC3C7', bg='#1C2833').place(x=170, y=15)
+Label(frame_cima, text=sitenome, font=('Ivy 9 bold'), fg='#BDC3C7', bg='#1C2833').place(x=170, y=50)
 Label(frame_cima, text='Idioma:', font=('Ivy 9 bold'), fg='#BDC3C7', bg='#1C2833').place(x=330, y=50)
 
 # criando botões  ======================================================================================================
@@ -280,7 +306,7 @@ def selectidioma():
 
 b_idioma = ttk.Combobox(frame_cima, values=['Por', 'Ing', 'Esp'], font=('Ivy 8 bold'), width=9)
 b_idioma.place(x=380, y=50)
-b_idioma.set('¯\_(ツ)_/¯')
+b_idioma.set('¯\\_(ツ)_/¯')
 
 Button(frame_lado, image=img_site, text='      Site', font=('Ivy 16 bold'), compound=LEFT, anchor=NW, width=200, fg='#BDC3C7', bg='#1C2833', relief=FLAT, command=site).place(x=20, y=30)
 
